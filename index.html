@@ -3,6 +3,7 @@
 	<head>
 		<title>JS</title>
 		<meta charset="utf-8">
+		<script src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" async defer></script>
 	<style>
 	p {
 		font-size: 1.5em;
@@ -15,18 +16,39 @@
 		color: red;
 		font-size: 1.2em;
 	}
+	.box {
+		position: relative;
+		background: silver;
+		width: 500px;
+		height: 350px;
+		border: 1px solid black;
+		border-radius: 10px;
+		margin: 40px auto;
+		padding: 20px;
+	}
 	</style>
+	</head>
+	<body>
+	<div class="box">
+		<form name="form1" method="post" action="" onsubmit="return from(this);">
+			<p>Введіть ім'я (не менше 3-х символів) </p>
+			<input  type="text" name="usName">
+			<span id="infoName">некоректні дані</span>	
+			<p>Введіть пароль (не менше 5-х символів)</p>
+			<input type="password" name="usPass" required> 
+			<input type="password" name="confirm_password" placeholder="Confirm password" required>
+			<span id="infoPass">некоректні дані</span>
+			<input type="checkbox" name="usCheckbox" value="yes" ><big> Правила </big><br><br>
+			<span id="infoUsCheckbox">Погодьте правила</span>
+			<input type="submit" value="SUBMIT">
+			<input type="reset" value="ВІДМІНА">
+		</form>	
+	</div>
 	<script>
 		function from(a) {
 			var usNameLength = a.usName.value.length;
 			var	usPassLength = a.usPass.value.length;
-			var	usPassConfLength = a.confirm_password.value.length;
-			var	usEmailLength = a.usEmail.value.length;
-			var at=a.usEmail.value.indexOf("@");
-			var krap=a.usEmail.value.indexOf(".");
-			var usCommentLength=a.usComment.value.length;
-			var UsFileLength=a.UsFile.value.length;
-    		
+			var	usPassConfLength = a.confirm_password.value.length;	
 			if (usNameLength < 3) {
 				document.getElementById("infoName").style.display = "block";
 				return false;
@@ -35,48 +57,11 @@
 				document.getElementById("infoPass").style.display = "block";
 				return false;
 			}
-			if (at < 1 || krap < 1 || krap+2 >= usEmailLength) {
-				document.getElementById("infoUsEmail").style.display = "block";
-				return false;
-			}
-			if (usCommentLength < 2) {
-				document.getElementById("infoUsComment").style.display = "block";
-				return false;
-			}
-			if (UsFileLength == 0) {
-				document.getElementById("infoUsFile").style.display = "block";
-				return false;
-			}
 			if (a.usCheckbox.prop('checked', false)) {
 				document.getElementById("infoUsCheckbox").style.display = "block";
 				return false;
 			}
 		}
-	</script>
-	</head>
-	<body>
-	<h2 align="left"> Form </h2>
-	<form name="form1" method="post" action="" onsubmit="return from(this);">
-		<p>Введіть ім'я (не менше 3-х символів) </p>
-		<input  type="text" name="usName">
-		<span id="infoName">некоректні дані</span>	
-		<p>Введіть пароль (не менше 5-х символів)</p>
-		<input type="password" name="usPass" required> 
-		<input type="password" name="confirm_password" placeholder="Confirm password" required>
-		<span id="infoPass">некоректні дані</span>
-		<p>Введіть e-mail </p>
-		<input type="text" name="usEmail" value="@">
-		<span id="infoUsEmail">некоректні дані</span>
-		<p>Введіть коментар</p>
-		<textarea name="usComment" cols="40" rows="3"></textarea>
-		<span id="infoUsComment">коментар пустий</span>
-		<p>Загрузіть зображення</p>
-		<input type="file" name="UsFile" value="yes"><br><br>
-		<span id="infoUsFile">Загрузуть файл</span>
-		<input type="checkbox" name="usCheckbox" value="yes" ><big> Правила </big><br><br>
-		<span id="infoUsCheckbox">Погодьте правила</span>
-		<input type="submit" value="SUBMIT">
-		<input type="reset" value="ВІДМІНА">
-	</form>			
+	</script>		
 	</body>
 </html>
