@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>JS</title>
+		<title>Autoriz</title>
 		<meta charset="utf-8">
 		<script src='https://www.google.com/recaptcha/api.js'></script>
+		<script src="js/script.js"></script>
 	<style>
+	* {
+		margin: 0;
+		}
 	p {
 		font-size: 1.5em;
 	}
 	input {
 		font-size: 1em;
-	}
-	span {
-		display: none;
-		color: red;
-		font-size: 1.2em;
 	}
 	.box {
 		position: relative;
@@ -24,43 +23,24 @@
 		border: 1px solid black;
 		border-radius: 10px;
 		margin: 40px auto;
-		padding: 20px;
+		padding: 35px;
 	}
 	</style>
 	</head>
-	<body>
+	<body onload="autorizLogin()">
 	<div class="box">
-		<form name="form1" method="post" action="" onsubmit="return from(this);">
+		<form name="form1" method="post"  onsubmit="Autoriz(this); return false" onreset="cookieErase()">
 			<p>Введіть логін (не менше 3-х символів) </p>
-			<input  type="text" name="usName">	
-			<p>Введіть пароль (не менше 5-х символів)</p>
+			<input  type="text" name="login">	
+			<p>Введіть пароль</p>
 			<input type="password" name="usPass" required> 
 			<input type="checkbox" name="usCheckbox" value="yes" ><big> Правила </big><br><br>
 			<span id="infoUsCheckbox">Погодьте правила</span>
 			<input type="submit" value="Вхід">
-			<input type="reset" value="ВІДМІНА">
+			<input type="reset" name="exit" value="ВІДМІНА">
 		</form>
 		<div class="g-recaptcha" data-sitekey="6Lcx-K4ZAAAAAOMmkMLsXUW3bRREGjccMsptJzKQ" data-theme="light"></div>	
 		<div class="text-danger" id="recaptchaError"></div>
 	</div>
-	<script>
-		function from(a) {
-			var usNameLength = a.usName.value.length;
-			var	usPassLength = a.usPass.value.length;
-			var	usPassConfLength = a.confirm_password.value.length;	
-			if (usNameLength < 3) {
-				document.getElementById("infoName").style.display = "block";
-				return false;
-			}
-			if (usPassLength < 5) {
-				document.getElementById("infoPass").style.display = "block";
-				return false;
-			}
-			if (a.usCheckbox.prop('checked', false)) {
-				document.getElementById("infoUsCheckbox").style.display = "block";
-				return false;
-			}
-		}
-	</script>		
 	</body>
 </html>
