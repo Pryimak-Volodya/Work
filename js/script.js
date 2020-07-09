@@ -66,5 +66,6 @@ function cookieErase () {
     setCookie('password', getCookie('password'), -1);
     setCookie('name', getCookie('name'), -1);
     setCookie('surname', getCookie('surname'), -1);
+    window.location.assign('index.html');
  };
 
