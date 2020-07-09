@@ -61,7 +61,7 @@ function autorizForm() {
         window.location.assign('index.html');
     }
 }
-function cookieErase () {
+function cookieErase (a) {
     setCookie('login', getCookie('login'), -1);
     setCookie('password', getCookie('password'), -1);
     setCookie('name', getCookie('name'), -1);
